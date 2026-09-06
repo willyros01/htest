@@ -1,13 +1,11 @@
-/* FIDUNIO 0.9.6.4 isolated test-host service worker. Cache/transport only; no semantic transforms. */
-const CACHE="fidunio-htest-0.9.6.4-bda5efee";
-const PIN="https://cdn.jsdelivr.net/gh/willyros01/hermes@bda5efee19333b4b3a3108341d30431d20447754/";
-const LOCAL=["./","./index.html","./version.js","./manifest.json","./htest-overrides.css","./test-diagnostics.html"];
-const REMOTE=["styles.css","styles-0.9.0.css","local-security-ui.css","settings-sidebar.css","message-bubbles.css","back-button-visibility.css","iphone-overflow-fix.css","bootstrap.js","account-guard.js","auth-ui-clean.js","account-storage.js","app.js","firebase.js","firebase-config.js","local-security.js","new-message-owner.js","settings-lifecycle.js","e2ee-account-runtime.js","e2ee-account-lifecycle.js","e2ee-account-identity-manager.js","e2ee-account-firebase-adapter.js","e2ee-account-firestore-adapter.js","e2ee-account-crypto.js","e2ee-account-recovery-client.js","e2ee-account-message-runtime.js","e2ee-account-message-service.js","e2ee-account-message-crypto.js","test-diagnostics.css","test-diagnostics.js"].map(x=>PIN+x);
-self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(cache=>Promise.allSettled([...LOCAL,...REMOTE].map(url=>cache.add(url)))).then(()=>self.skipWaiting())));
+/* FIDUNIO account-E2EE runtime service worker. Network-first shell; no semantic source transforms. */
+importScripts("./version.js");
+const SW_VERSION=globalThis.FIDUNIO_RELEASE?.version||"unknown";
+const CACHE=`fidunio-shell-${SW_VERSION}`;
+const SHELL=["./","./index.html","./version.js","./styles.css","./styles-0.9.0.css","./app.js","./firebase.js","./firebase-config.js","./settings-lifecycle.js","./new-message-owner.js","./local-security.js","./account-storage.js","./e2ee-account-runtime.js","./e2ee-account-lifecycle.js","./e2ee-account-identity-manager.js","./e2ee-account-firebase-adapter.js","./e2ee-account-firestore-adapter.js","./e2ee-account-crypto.js","./e2ee-account-recovery-client.js","./e2ee-account-message-runtime.js","./e2ee-account-message-service.js","./e2ee-account-message-crypto.js","./manifest.json","./favicon.png","./fidunio-logo.png","./icon-180.png","./icon-192.png","./icon-512.png"];
+const FIREBASE_SDK=["https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js","https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js","https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js","https://www.gstatic.com/firebasejs/12.18.0/firebase-app-check.js","https://www.gstatic.com/firebasejs/12.18.0/firebase-functions.js"];
+const NETWORK_TIMEOUT=4000;
+self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(cache=>Promise.allSettled([...SHELL,...FIREBASE_SDK].map(url=>cache.add(url)))).then(()=>self.skipWaiting())));
 self.addEventListener("activate",event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener("fetch",event=>{
-  if(event.request.method!=="GET")return;
-  const u=new URL(event.request.url);
-  if(u.hostname.endsWith("googleapis.com")||u.hostname.endsWith("firebaseio.com"))return;
-  event.respondWith(fetch(event.request,{cache:"no-store"}).then(r=>{if(r&&r.ok){const c=r.clone();caches.open(CACHE).then(cache=>cache.put(event.request,c));}return r;}).catch(async()=>{const hit=await caches.match(event.request);if(hit)return hit;if(event.request.mode==="navigate")return caches.match("./index.html");throw new Error("offline and not cached");}));
-});
+async function networkFirst(request){const cache=await caches.open(CACHE);try{const response=await Promise.race([fetch(request,{cache:"no-store"}),new Promise((_,reject)=>setTimeout(()=>reject(new Error("slow")),NETWORK_TIMEOUT))]);if(response&&response.ok)cache.put(request,response.clone());return response;}catch{const hit=await cache.match(request);if(hit)return hit;if(request.mode==="navigate"){const shell=await cache.match("./index.html");if(shell)return shell;}throw new Error("offline and not cached");}}
+self.addEventListener("fetch",event=>{if(event.request.method!=="GET")return;const url=new URL(event.request.url);if(url.hostname.endsWith("googleapis.com")||url.hostname.endsWith("firebaseio.com"))return;if(url.hostname==="www.gstatic.com"){event.respondWith(caches.open(CACHE).then(async cache=>{const hit=await cache.match(event.request);const fresh=fetch(event.request).then(response=>{if(response&&response.ok)cache.put(event.request,response.clone());return response;}).catch(()=>hit);return hit||fresh;}));return;}if(url.origin===self.location.origin)event.respondWith(networkFirst(event.request));});
