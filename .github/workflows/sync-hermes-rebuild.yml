@@ -1,0 +1,51 @@
+name: Sync Hermes Rebuild to htest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-hermes-rebuild.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout htest
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch FIDUNIO rebuild branch
+        run: |
+          git clone --depth 1 --branch fidunio-complete-rebuild https://github.com/willyros01/hermes.git /tmp/hermes-rebuild
+
+      - name: Sync current web-app code and assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp firebase-config.js /tmp/htest-firebase-config.js
+          cp /tmp/hermes-rebuild/*.js .
+          cp /tmp/hermes-rebuild/*.css .
+          cp /tmp/hermes-rebuild/*.html .
+          cp /tmp/hermes-rebuild/*.json .
+          cp /tmp/hermes-rebuild/*.png .
+          cp /tmp/htest-firebase-config.js firebase-config.js
+          touch .nojekyll
+
+      - name: Commit synchronized rebuild
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "htest already matches the rebuild web code."
+            exit 0
+          fi
+          git commit -m "Sync current FIDUNIO rebuild web code"
+          git push origin main
