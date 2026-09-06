@@ -1,3 +1,26 @@
-/* Prominent navigation Back controls. */
-.back-btn{width:auto;min-width:44px;height:44px;padding:0 12px;border:1px solid color-mix(in srgb,var(--accent) 45%,var(--line));background:var(--accent-soft);color:var(--accent);border-radius:12px;font-weight:900;opacity:1;box-shadow:0 1px 3px rgba(16,32,44,.12)}
-.back-btn:hover,.back-btn:focus-visible{border-color:var(--accent);outline:2px solid color-mix(in srgb,var(--accent) 35%,transparent);outline-offset:2px}.back-btn:active{transform:translateY(1px)}html[data-theme="dark"] .back-btn{border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
+/* Temporary stabilization: make navigation Back controls unmistakable on phone, tablet and desktop. */
+.back-btn{
+  width:auto;
+  min-width:44px;
+  height:44px;
+  padding:0 12px;
+  border:1px solid color-mix(in srgb,var(--accent) 45%,var(--line));
+  background:var(--accent-soft);
+  color:var(--accent);
+  border-radius:12px;
+  font-weight:900;
+  opacity:1;
+  box-shadow:0 1px 3px rgba(16,32,44,.12);
+}
+.back-btn:hover,
+.back-btn:focus-visible{
+  border-color:var(--accent);
+  outline:2px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  outline-offset:2px;
+}
+.back-btn:active{transform:translateY(1px);}
+html[data-theme="dark"] .back-btn{
+  border-color:var(--accent);
+  background:var(--accent-soft);
+  color:var(--ink);
+}

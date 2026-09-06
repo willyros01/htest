@@ -1,0 +1,32 @@
+{
+  "name":"fidunio-hermes-security-tests","private":true,"type":"module",
+  "scripts":{
+    "test:e2ee-rules":"node firestore-e2ee-v1.rules.test.mjs",
+    "emulator:test:e2ee-rules":"firebase emulators:exec --only firestore --project demo-fidunio-e2ee-rules \"npm run test:e2ee-rules\"",
+    "emulator:test:account-message-rules":"firebase emulators:exec --only firestore --project demo-fidunio-account-message-rules \"node firestore-account-message-v3.rules.test.mjs\"",
+    "test:group-e2ee-rules":"node firestore-group-e2ee-v1.rules.test.mjs",
+    "emulator:test:group-e2ee-rules":"firebase emulators:exec --only firestore --project demo-fidunio-group-e2ee-rules \"npm run test:group-e2ee-rules\"",
+    "test:e2ee-account-group-crypto":"node e2ee-account-group-crypto.test.mjs",
+    "test:e2ee-account-group-runtime":"node e2ee-account-group-runtime.test.mjs",
+    "test:e2ee-account-group-service":"node e2ee-account-group-service.test.mjs",
+    "test:e2ee-account-group-outbox":"node e2ee-account-group-outbox.test.mjs",
+    "test:e2ee-account-group-conversation":"node e2ee-account-group-conversation.test.mjs",
+    "test:e2ee-account-group-app-controller":"node e2ee-account-group-app-controller.test.mjs",
+    "test:e2ee-account-group-app-integration":"node e2ee-account-group-app-integration.test.mjs",
+    "test:e2ee-account-attachment-crypto":"node e2ee-account-attachment-crypto.test.mjs",
+    "test:recovery-crypto":"node e2ee-recovery-server-crypto.test.mjs",
+    "test:recovery-session":"node e2ee-recovery-session-policy.test.mjs",
+    "test:recovery-callable-core":"node e2ee-recovery-callable-core.test.mjs",
+    "test:recovery-firestore":"node e2ee-recovery-firestore-admin-adapter.test.mjs",
+    "test:firebase-e2ee-adapter":"node e2ee-account-firebase-adapter.test.mjs",
+    "test:e2ee-account-lifecycle":"node e2ee-account-lifecycle.test.mjs",
+    "test:e2ee-account-message-crypto":"node e2ee-account-message-crypto.test.mjs",
+    "test:e2ee-account-message-service":"node e2ee-account-message-service.test.mjs",
+    "test:firebase-app-check":"node firebase-app-check.test.mjs",
+    "test:functions-scaffold":"npm --prefix functions install --ignore-scripts && node --input-type=module -e \"import fs from 'node:fs';const src=fs.readFileSync('./functions/index.mjs','utf8');if(/supplementalVerifier|supplemental verification/i.test(src))throw new Error('obsolete supplemental recovery verifier present');if(!/const REQUIRE_APP_CHECK = false;/.test(src))throw new Error('staging App Check must remain off');if(!/fidunio-recovery@fidunio-fef13\\.iam\\.gserviceaccount\\.com/.test(src))throw new Error('dedicated recovery service account missing');if(!/request => invoke\\(core\\.completeE2EERecoveryV1, request\\)/.test(src))throw new Error('completion callable not wired');const m=await import('./functions/index.mjs');for(const n of ['enrollRecoveryV1','startE2EERecoveryV1','completeE2EERecoveryV1'])if(typeof m[n]!=='function')throw new Error('missing '+n);console.log('Cloud Functions recovery scaffold imports and staging guards pass')\"",
+    "test:runtime-transform-anchors":"node runtime-transform-anchor.test.mjs",
+    "test:runtime-authority":"node runtime-authority-gate.test.mjs",
+    "test:e2ee-account-recovery-client":"node e2ee-account-recovery-client.test.mjs"
+  },
+  "devDependencies":{"@firebase/rules-unit-testing":"^5.0.0","firebase":"^12.0.0","firebase-tools":"^14.0.0"}
+}

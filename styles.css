@@ -1,0 +1,1351 @@
+:root{
+  --bg:#f4f6f8;
+  --page:#cfd8de;
+  --panel:#ffffff;
+  --ink:#12212b;
+  --muted:#6f7d86;
+  --line:#dfe6eb;
+  --accent:#176b87;
+  --accent-soft:#e8f3f7;
+  --mine:#dff2f7;
+  --theirs:#ffffff;
+  --danger:#b42318;
+  --ok:#1c7c54;
+  --queued:#8a6d1d;
+  --warn-bg:#fff6db;
+  --warn-ink:#775b00;
+  --input:#ffffff;
+  --tool:#f8fafb;
+  --overlay:rgba(255,255,255,.96);
+  --radius:18px;
+  --app-max:520px;
+  --shadow:0 8px 24px rgba(16,32,44,.08);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+html[data-theme="dark"]{
+  --bg:#10171c;
+  --page:#0a0f13;
+  --panel:#182127;
+  --ink:#f2f6f8;
+  --muted:#aab6bd;
+  --line:#2b3941;
+  --accent:#78c7df;
+  --accent-soft:#17323d;
+  --mine:#1d4653;
+  --theirs:#1b252b;
+  --danger:#ff8f86;
+  --ok:#77d5a8;
+  --queued:#e8c86d;
+  --warn-bg:#332d18;
+  --warn-ink:#f0d989;
+  --input:#131c21;
+  --tool:#152027;
+  --overlay:rgba(24,33,39,.96);
+  --shadow:0 8px 24px rgba(0,0,0,.28);
+}
+/* Fidunio text-size system: A / A+ / A++ */
+html.text-a{font-size:16px}
+
+html.text-aplus{font-size:18px}
+html.text-aplus .topbar h1{font-size:27px}
+html.text-aplus .chat-header-title strong,
+html.text-aplus .name{font-size:20px}
+html.text-aplus .preview{font-size:16px}
+html.text-aplus .meta{font-size:14px}
+html.text-aplus .badge{font-size:13px}
+html.text-aplus .msg-text,
+html.text-aplus textarea,
+html.text-aplus .search,
+html.text-aplus .text-input{font-size:19px}
+html.text-aplus .card h2,
+html.text-aplus .big-choice strong,
+html.text-aplus .primary,
+html.text-aplus .secondary,
+html.text-aplus .danger-btn{font-size:19px}
+html.text-aplus .row-main strong,
+html.text-aplus .row-action,
+html.text-aplus .appearance-btn,
+html.text-aplus .text-size-btn,
+html.text-aplus .text-btn{font-size:17px}
+html.text-aplus .status-banner,
+html.text-aplus .info-banner,
+html.text-aplus .quick-chip,
+html.text-aplus .tool,
+html.text-aplus .row-main span,
+html.text-aplus .big-choice span,
+html.text-aplus .person-chip,
+html.text-aplus .form-label,
+html.text-aplus .small-note{font-size:15px}
+html.text-aplus .secure,
+html.text-aplus .sender-label,
+html.text-aplus .day-divider,
+html.text-aplus .msg-meta,
+html.text-aplus .history-lock,
+html.text-aplus .role-tag,
+html.text-aplus .version-footer{font-size:13px}
+html.text-aplus .quick-chip{padding:10px 14px}
+html.text-aplus .row{padding:14px 0}
+html.text-aplus .conversation{padding:16px}
+html.text-aplus .more-btn,
+html.text-aplus .send-btn{height:52px}
+html.text-aplus textarea{min-height:52px}
+
+html.text-aplusplus{font-size:21px}
+html.text-aplusplus .topbar h1{font-size:31px}
+html.text-aplusplus .chat-header-title strong,
+html.text-aplusplus .name{font-size:23px}
+html.text-aplusplus .preview{font-size:19px}
+html.text-aplusplus .meta{font-size:17px}
+html.text-aplusplus .badge{font-size:16px}
+html.text-aplusplus .msg-text,
+html.text-aplusplus textarea,
+html.text-aplusplus .search,
+html.text-aplusplus .text-input{font-size:23px;line-height:1.42}
+html.text-aplusplus .card h2,
+html.text-aplusplus .big-choice strong,
+html.text-aplusplus .primary,
+html.text-aplusplus .secondary,
+html.text-aplusplus .danger-btn{font-size:22px}
+html.text-aplusplus .row-main strong,
+html.text-aplusplus .row-action,
+html.text-aplusplus .appearance-btn,
+html.text-aplusplus .text-size-btn,
+html.text-aplusplus .text-btn{font-size:20px}
+html.text-aplusplus .status-banner,
+html.text-aplusplus .info-banner,
+html.text-aplusplus .quick-chip,
+html.text-aplusplus .tool,
+html.text-aplusplus .row-main span,
+html.text-aplusplus .big-choice span,
+html.text-aplusplus .person-chip,
+html.text-aplusplus .form-label,
+html.text-aplusplus .small-note{font-size:18px;line-height:1.45}
+html.text-aplusplus .secure,
+html.text-aplusplus .sender-label,
+html.text-aplusplus .day-divider,
+html.text-aplusplus .msg-meta,
+html.text-aplusplus .history-lock,
+html.text-aplusplus .role-tag,
+html.text-aplusplus .version-footer{font-size:16px}
+html.text-aplusplus .section-title{font-size:17px}
+html.text-aplusplus .about-box .brand{font-size:29px}
+html.text-aplusplus .quick-chip{padding:12px 16px}
+html.text-aplusplus .row{padding:17px 0}
+html.text-aplusplus .conversation{padding:18px}
+html.text-aplusplus .more-btn,
+html.text-aplusplus .send-btn{height:58px}
+html.text-aplusplus textarea{min-height:58px}
+
+
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--page);color:var(--ink)}
+body{min-height:100vh;display:flex;justify-content:center}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+.app-shell{width:100%;max-width:var(--app-max);min-height:100vh;background:var(--bg);position:relative;overflow:hidden}
+.topbar{
+  position:sticky;top:0;z-index:20;background:var(--overlay);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 14px 10px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.topbar h1{margin:0;font-size:24px;letter-spacing:-.02em}
+.topbar-spacer{width:44px;height:44px}
+.icon-btn,.back-btn{
+  border:0;background:transparent;color:var(--accent);width:44px;height:44px;border-radius:12px;font-size:24px
+}
+.text-btn{border:0;background:transparent;color:var(--accent);font-weight:800;padding:10px 4px}
+.content{padding:14px 14px 92px}
+.section-title{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:18px 2px 8px}
+.search,.text-input{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;width:100%;font-size:16px
+}
+.conversation-list,.member-list,.choice-list{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.conversation{
+  width:100%;border:0;background:var(--panel);border-radius:16px;padding:14px;box-shadow:var(--shadow);text-align:left;
+  display:grid;grid-template-columns:50px 1fr auto;gap:12px;align-items:center
+}
+.avatar{
+  width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);
+  color:var(--accent);font-weight:800;font-size:18px;position:relative
+}
+.group-avatar::after{
+  content:"G";position:absolute;right:-3px;bottom:-3px;width:20px;height:20px;border-radius:50%;
+  display:grid;place-items:center;background:var(--accent);color:#fff;border:2px solid #fff;font-size:10px;font-weight:900
+}
+.name{font-weight:800;font-size:17px}
+.preview{color:var(--muted);font-size:14px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta{text-align:right;font-size:12px;color:var(--muted)}
+.badge{
+  margin-top:8px;margin-left:auto;width:22px;height:22px;border-radius:11px;background:var(--accent);
+  color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800
+}
+.fab{
+  position:fixed;right:max(18px,calc((100vw - var(--app-max))/2 + 18px));bottom:22px;width:58px;height:58px;border:0;
+  border-radius:50%;background:var(--accent);color:white;font-size:30px;box-shadow:0 10px 22px rgba(23,107,135,.3)
+}
+.chat-header-title{display:flex;flex-direction:column;align-items:center;line-height:1.1;text-align:center;min-width:0}
+.chat-header-title strong{font-size:17px;max-width:290px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.secure{font-size:12px;color:var(--ok);margin-top:4px}
+.status-banner,.info-banner{
+  margin:10px 14px 0;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:700
+}
+.status-banner{background:var(--warn-bg);color:var(--warn-ink);border:1px solid #ead89a}
+.info-banner{background:var(--accent-soft);color:#245365;border:1px solid #c5dfe8}
+.chat{min-height:calc(100vh - 210px);padding:14px 14px 170px;display:flex;flex-direction:column;gap:10px}
+.day-divider{align-self:center;color:var(--muted);font-size:12px;background:var(--line);border-radius:999px;padding:5px 9px;margin:6px 0}
+.msg-row{display:flex;flex-direction:column;align-items:flex-start}
+.msg-row.mine{align-items:flex-end}
+.sender-label{font-size:12px;color:var(--muted);font-weight:800;margin:0 0 3px 8px}
+.bubble{max-width:80%;padding:10px 12px;border-radius:18px;background:var(--theirs);box-shadow:0 2px 8px rgba(16,32,44,.05)}
+.mine .bubble{background:var(--mine)}
+.msg-text{font-size:17px;line-height:1.35;white-space:pre-wrap}
+.msg-meta{margin-top:5px;font-size:11px;color:var(--muted);display:flex;gap:6px;justify-content:flex-end}
+.state-queued{color:var(--queued);font-weight:700}
+.state-failed{color:var(--danger);font-weight:700}
+.composer-wrap{
+  position:fixed;left:max(0px,calc((100vw - var(--app-max))/2));right:max(0px,calc((100vw - var(--app-max))/2));
+  bottom:0;width:auto;background:var(--overlay);backdrop-filter:blur(10px);
+  border-top:1px solid var(--line);padding:8px 14px calc(10px + env(safe-area-inset-bottom))
+}
+.quick-row{display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px}
+.quick-chip{
+  border:1px solid #b8ccd5;background:var(--panel);color:var(--ink);border-radius:999px;padding:8px 12px;
+  white-space:nowrap;font-size:14px;font-weight:700
+}
+.compose-line{display:grid;grid-template-columns:42px 1fr 48px;gap:8px;align-items:end}
+.more-btn,.send-btn{border:0;border-radius:14px;height:46px;font-size:22px}
+.more-btn{background:var(--tool);color:var(--accent)}
+.send-btn{background:var(--accent);color:white;font-size:20px}
+textarea{
+  resize:none;max-height:120px;min-height:46px;width:100%;border:1px solid #c9d5dc;border-radius:16px;
+  padding:11px 12px;font-size:17px;line-height:1.3;background:var(--input);color:var(--ink)
+}
+.tool-panel{display:none;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px 0 2px}
+.tool-panel.open{display:grid}
+.tool{
+  border:1px solid var(--line);background:var(--tool);border-radius:12px;padding:10px 6px;font-size:13px;color:#304754;font-weight:700
+}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
+.card + .card{margin-top:14px}
+.card h2{font-size:17px;margin:0 0 10px}
+.card p{line-height:1.45}
+.row{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 0;border-top:1px solid var(--line)
+}
+.row:first-of-type{border-top:0}
+.row-main{min-width:0}
+.row-main strong{display:block}
+.row-main span{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.row-action{border:0;background:transparent;color:var(--accent);font-weight:800}
+.toggle{width:50px;height:30px;border-radius:16px;background:#bdc7ce;position:relative;border:0;flex:0 0 auto}
+.toggle.on{background:var(--accent)}
+.toggle::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;background:#fff;border-radius:50%;transition:.2s}
+.toggle.on::after{left:23px}
+.unlock{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
+  background:var(--bg)
+}
+.unlock-card{width:100%;background:var(--panel);border-radius:24px;padding:28px 22px;box-shadow:var(--shadow);text-align:center}
+.lock-mark{font-size:44px}
+.unlock h1{margin:10px 0 6px;font-size:26px}
+.unlock p{color:var(--muted);line-height:1.5}
+.primary,.secondary,.danger-btn{
+  width:100%;border-radius:14px;padding:14px;font-weight:800;font-size:17px;margin-top:12px
+}
+.primary{border:0;background:var(--accent);color:#fff}
+.secondary{border:1px solid #b8ccd5;background:var(--panel);color:var(--accent)}
+.danger-btn{border:1px solid #e6b8b4;background:var(--panel);color:var(--danger)}
+.small-note{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.4}
+.action-sheet{display:flex;flex-direction:column;gap:10px}
+.big-choice{
+  width:100%;border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:17px;text-align:left;
+  display:flex;align-items:center;gap:14px;box-shadow:var(--shadow)
+}
+.big-choice .choice-icon{font-size:28px;width:42px;text-align:center}
+.big-choice strong{display:block;font-size:17px}
+.big-choice span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.member-option{
+  width:100%;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:12px;
+  display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:10px;text-align:left
+}
+.member-option.selected{border-color:var(--accent);background:var(--accent-soft)}
+.member-option .avatar{width:44px;height:44px;font-size:15px}
+.checkmark{
+  width:28px;height:28px;border-radius:50%;border:2px solid #b9c8cf;display:grid;place-items:center;color:white;font-weight:900
+}
+.member-option.selected .checkmark{background:var(--accent);border-color:var(--accent)}
+.form-label{display:block;font-size:13px;font-weight:800;color:var(--muted);margin:14px 2px 7px}
+.chip-row{display:flex;gap:8px;overflow-x:auto;margin:10px 0}
+.person-chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:7px 10px;font-size:13px;font-weight:700;white-space:nowrap}
+.member-card{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.member-card:first-of-type{border-top:0}
+.member-card .avatar{width:44px;height:44px;font-size:15px}
+.role-tag{font-size:11px;font-weight:900;color:var(--accent);background:var(--accent-soft);padding:4px 7px;border-radius:999px}
+.history-lock{font-size:12px;color:var(--muted)}
+.permission-box{background:var(--tool);border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}
+.radio-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}
+.radio-row:first-child{border-top:0}
+.radio-row input{margin-top:3px}
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(6,17,24,.45);z-index:50;display:flex;align-items:flex-end;justify-content:center
+}
+.modal{
+  width:min(100%,var(--app-max));max-height:84vh;overflow:auto;background:var(--panel);border-radius:22px 22px 0 0;
+  padding:16px 16px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -10px 30px rgba(0,0,0,.15)
+}
+.modal h2{margin:4px 0 6px}
+.modal p{color:var(--muted);line-height:1.4}
+.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.modal-actions button{border-radius:12px;padding:12px;font-weight:800}
+.modal-cancel{border:1px solid var(--line);background:var(--panel);color:var(--accent)}
+.modal-confirm{border:0;background:var(--accent);color:#fff}
+.settings{display:flex;flex-direction:column;gap:14px}
+@media (max-width:380px){
+  .topbar h1{font-size:21px}
+  .msg-text{font-size:16px}
+  .tool-panel{grid-template-columns:repeat(3,1fr)}
+}
+
+.version-footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  padding:6px 0 2px;
+}
+.appearance-options{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:10px;
+}
+.appearance-btn{
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:var(--ink);
+  border-radius:12px;
+  padding:10px 6px;
+  font-weight:800;
+}
+.appearance-btn.active{
+  border-color:var(--accent);
+  background:var(--accent-soft);
+  color:var(--accent);
+}
+.text-size-options{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:12px;
+}
+.text-size-btn{
+  min-height:48px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:var(--ink);
+  border-radius:12px;
+  font-weight:900;
+}
+.text-size-btn:nth-child(1){font-size:18px}
+.text-size-btn:nth-child(2){font-size:21px}
+.text-size-btn:nth-child(3){font-size:24px}
+.text-size-btn.active{
+  border-color:var(--accent);
+  background:var(--accent-soft);
+  color:var(--accent);
+}
+.about-box{
+  text-align:center;
+  padding:8px 0;
+}
+.about-box .brand{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:.06em;
+}
+.about-box .version{
+  margin-top:6px;
+  font-weight:800;
+}
+
+.brand-logo{
+  width:86px;
+  height:86px;
+  object-fit:contain;
+  border-radius:22px;
+  background:#fff;
+  box-shadow:0 6px 20px rgba(16,32,44,.12);
+}
+.brand-logo.small{
+  width:52px;
+  height:52px;
+  border-radius:15px;
+  box-shadow:none;
+}
+.unlock-brand{
+  display:flex;
+  justify-content:center;
+  margin-bottom:10px;
+}
+.about-brand{
+  display:flex;
+  justify-content:center;
+  margin-bottom:10px;
+}
+.top-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+.top-brand img{
+  width:34px;
+  height:34px;
+  border-radius:9px;
+  background:#fff;
+}
+
+/* 0.3.1 responsive safeguards */
+@media (max-width:520px){
+  .app-shell{max-width:none}
+  .composer-wrap{left:0;right:0}
+}
+@supports (width:100dvw){
+  .composer-wrap{max-width:100dvw}
+}
+
+/* Keep History Access actions visible with large text and short screens. */
+.modal-actions{
+  position:sticky;
+  bottom:calc(-16px - env(safe-area-inset-bottom));
+  background:var(--panel);
+  padding:10px 0 calc(8px + env(safe-area-inset-bottom));
+  z-index:2;
+}
+html.text-aplusplus .modal{max-height:88vh}
+html.text-aplusplus .modal-actions button{min-height:52px;font-size:20px}
+
+
+/* Fidunio 0.4 — targeted dark-mode contrast correction.
+   Preserve the existing palette; only lighten text that was too dark on dark backgrounds. */
+html.dark,
+html[data-theme="dark"]{
+  --muted:#b9c4cc;
+  --muted-2:#9eabb4;
+}
+
+/* Secondary/utility text in dark mode */
+html.dark .tool,
+html.dark .tool span,
+html.dark .row-main span,
+html.dark .small-note,
+html.dark .preview,
+html.dark .meta,
+html.dark .history-lock,
+html.dark .sender-label,
+html.dark .day-divider,
+html.dark .msg-meta,
+html.dark .secure,
+html.dark .version-footer,
+html.dark .status-banner,
+html.dark .info-banner,
+html.dark .person-chip,
+html.dark .form-label,
+html.dark .role-tag,
+html.dark .section-title,
+html.dark .appearance-btn,
+html.dark .text-size-btn,
+html[data-theme="dark"] .tool,
+html[data-theme="dark"] .tool span,
+html[data-theme="dark"] .row-main span,
+html[data-theme="dark"] .small-note,
+html[data-theme="dark"] .preview,
+html[data-theme="dark"] .meta,
+html[data-theme="dark"] .history-lock,
+html[data-theme="dark"] .sender-label,
+html[data-theme="dark"] .day-divider,
+html[data-theme="dark"] .msg-meta,
+html[data-theme="dark"] .secure,
+html[data-theme="dark"] .version-footer,
+html[data-theme="dark"] .status-banner,
+html[data-theme="dark"] .info-banner,
+html[data-theme="dark"] .person-chip,
+html[data-theme="dark"] .form-label,
+html[data-theme="dark"] .role-tag,
+html[data-theme="dark"] .section-title,
+html[data-theme="dark"] .appearance-btn,
+html[data-theme="dark"] .text-size-btn{
+  color:#c3cdd4 !important;
+}
+
+/* Keep primary/action text bright enough without changing the overall color scheme */
+html.dark .tool strong,
+html.dark .row-main strong,
+html.dark .name,
+html.dark .card h2,
+html.dark .chat-header-title strong,
+html[data-theme="dark"] .tool strong,
+html[data-theme="dark"] .row-main strong,
+html[data-theme="dark"] .name,
+html[data-theme="dark"] .card h2,
+html[data-theme="dark"] .chat-header-title strong{
+  color:#edf3f6 !important;
+}
+
+/* Informational banner text should remain readable but not stark white */
+html.dark .info-banner,
+html.dark .status-banner,
+html[data-theme="dark"] .info-banner,
+html[data-theme="dark"] .status-banner{
+  color:#b8d0dc !important;
+}
+
+/* Tool tiles themselves keep the existing background; only the text is lifted */
+html.dark .tool,
+html[data-theme="dark"] .tool{
+  opacity:1;
+}
+
+
+/* 0.5 responsive group-layout fix: no horizontal page scrolling on iPhone/iPad. */
+html,body{max-width:100%;overflow-x:hidden}
+.content,.card,.row,.member-card,.row-main,.choice-list,.member-option{min-width:0;max-width:100%}
+.row-main strong,.row-main span,.member-card strong,.member-card span{
+  overflow-wrap:anywhere;word-break:normal
+}
+.card .row{flex-wrap:wrap}
+.card .row > .row-main{flex:1 1 210px}
+.card .row > button,.card .row > .toggle{flex:0 0 auto;max-width:100%}
+.member-card{
+  grid-template-columns:44px minmax(0,1fr) auto;
+}
+.member-card > :last-child{min-width:0;max-width:100%}
+@media (max-width:430px){
+  .member-card{
+    grid-template-columns:44px minmax(0,1fr);
+  }
+  .member-card > :last-child{
+    grid-column:2;
+    justify-self:start;
+    margin-top:2px;
+  }
+  .card .row{
+    align-items:flex-start;
+  }
+  .card .row > .row-main{
+    flex-basis:100%;
+  }
+  .card .row > .row-action,
+  .card .row > .toggle{
+    margin-left:auto;
+  }
+}
+html.text-aplusplus .card .row > .row-main{flex-basis:100%}
+html.text-aplusplus .member-card{
+  grid-template-columns:44px minmax(0,1fr);
+}
+html.text-aplusplus .member-card > :last-child{
+  grid-column:2;justify-self:start
+}
+
+
+/* 0.6 Firebase account / transport-test UI */
+.uid-box{
+  width:100%;box-sizing:border-box;padding:12px;border-radius:12px;
+  border:1px solid var(--line);background:var(--surface-2);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78em;
+  overflow-wrap:anywhere;margin:8px 0 10px;
+}
+.auth-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.warning-note,.warning-banner{
+  color:var(--text);background:var(--surface-2);border:1px solid var(--line);
+  border-radius:12px;padding:10px 12px;line-height:1.45;
+}
+.warning-banner{margin:8px 12px 0;font-size:.9em}
+.settings code{overflow-wrap:anywhere}
+@media(max-width:430px), (min-resolution:2dppx){
+  .auth-actions{grid-template-columns:1fr}
+}
+
+
+/* 0.8.1.1 — polished two-dimensional icon treatment */
+.icon-2d{
+  display:inline-grid;
+  place-items:center;
+  line-height:0;
+}
+.icon-2d svg,
+.tool-icon svg{
+  display:block;
+}
+.tool{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.tool-icon{
+  display:inline-grid;
+  place-items:center;
+  flex:0 0 auto;
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  background:color-mix(in srgb, currentColor 10%, transparent);
+  box-shadow:inset 0 1px 0 color-mix(in srgb, #fff 55%, transparent), 0 1px 2px rgba(0,0,0,.10);
+}
+.icon-btn.icon-2d,
+.back-btn.icon-2d,
+.more-btn.icon-2d,
+.send-btn.icon-2d,
+.fab.icon-2d{
+  text-shadow:none;
+}
+
+
+/* 0.8.1.2 — responsive tool grid + color-coded 2D icons */
+.composer-wrap,
+.tool-panel,
+.compose-line,
+.quick-row{
+  min-width:0;
+  max-width:100%;
+  box-sizing:border-box;
+}
+.tool-panel.open{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  width:100%;
+  overflow:hidden;
+}
+.tool{
+  min-width:0;
+  width:100%;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+.tool span:last-child{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.tool-icon{
+  color:var(--accent);
+}
+.tool:nth-child(1) .tool-icon{color:#2f9e44;background:rgba(47,158,68,.12)}
+.tool:nth-child(2) .tool-icon{color:#2f80ed;background:rgba(47,128,237,.12)}
+.tool:nth-child(3) .tool-icon{color:#e8590c;background:rgba(232,89,12,.12)}
+.tool:nth-child(4) .tool-icon{color:#7950f2;background:rgba(121,80,242,.12)}
+.tool:nth-child(5) .tool-icon{color:#1971c2;background:rgba(25,113,194,.12)}
+.tool:nth-child(6) .tool-icon{color:#20a464;background:rgba(32,164,100,.12)}
+.tool:nth-child(7) .tool-icon{color:#f08c00;background:rgba(240,140,0,.12)}
+.tool:nth-child(8) .tool-icon{color:#d9a400;background:rgba(217,164,0,.12)}
+
+@media (max-width: 700px){
+  .tool-panel.open{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .tool{
+    padding:9px 8px;
+    gap:8px;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1100px){
+  .tool-panel.open{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+}
+
+@media (max-width: 430px){
+  .quick-row{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .quick-row::-webkit-scrollbar{display:none}
+  .tool-icon{
+    width:30px;
+    height:30px;
+  }
+}
+
+
+/* 0.8.1.3 — compact colored tools + adaptive iPad/tablet two-pane layout */
+.tool-panel.open{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  width:100%;
+  overflow:hidden;
+}
+.tool{
+  min-width:0;
+  width:100%;
+  min-height:82px;
+  padding:9px 6px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  text-align:center;
+  box-sizing:border-box;
+}
+.tool span:last-child{
+  display:block;
+  width:100%;
+  overflow:visible;
+  text-overflow:clip;
+  white-space:normal;
+  line-height:1.15;
+}
+.tool-icon{
+  width:38px;
+  height:38px;
+  border-radius:11px;
+}
+.tool-icon svg{
+  width:26px;
+  height:26px;
+}
+@media (max-width:430px){
+  .tool-panel.open{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:6px;
+  }
+  .tool{
+    min-height:76px;
+    padding:7px 3px;
+    font-size:12px;
+  }
+  .tool-icon{
+    width:34px;
+    height:34px;
+  }
+}
+
+.tablet-shell{
+  width:100%;
+  max-width:none;
+  height:100dvh;
+  display:grid;
+  grid-template-columns:minmax(280px,34%) minmax(0,1fr);
+  overflow:hidden;
+  background:var(--bg);
+}
+.tablet-sidebar{
+  min-width:0;
+  height:100dvh;
+  border-right:1px solid var(--line);
+  background:var(--panel);
+  display:flex;
+  flex-direction:column;
+}
+.tablet-brand-row{
+  min-height:76px;
+  padding:14px 16px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid var(--line);
+}
+.tablet-brand-name{
+  font-weight:800;
+  letter-spacing:.02em;
+  font-size:21px;
+}
+.tablet-brand-sub{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:2px;
+}
+.tablet-search-wrap{
+  padding:12px 12px 8px;
+}
+.tablet-conversation-list{
+  min-height:0;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.tablet-conversation{
+  width:100%;
+  border:0;
+  border-bottom:1px solid var(--line);
+  background:transparent;
+  color:inherit;
+  padding:12px 14px;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  text-align:left;
+}
+.tablet-conversation.active{
+  background:color-mix(in srgb, var(--accent) 11%, transparent);
+}
+.tablet-conversation-main{min-width:0;}
+.tablet-row-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.tablet-row-top .name{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.tablet-row-top .meta{flex:0 0 auto;}
+.tablet-conversation .preview{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.tablet-chat-pane{
+  min-width:0;
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.tablet-chat-pane .topbar{flex:0 0 auto;}
+.tablet-chat-pane .chat{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+}
+.tablet-chat-pane .composer-wrap{flex:0 0 auto;}
+.tablet-chat-pane .back-btn{display:none;}
+.tablet-chat-pane .tool-panel.open{grid-template-columns:repeat(4,minmax(0,1fr));}
+.tablet-chat-pane .tool{min-height:78px;}
+
+@media (max-width:819px){
+  .tablet-shell{display:block;height:auto;}
+  .tablet-sidebar{display:none;}
+}
+
+
+/* 0.8.1.4 — tablet sidebar action fix */
+.tablet-brand-actions{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex:0 0 auto;
+}
+.tablet-brand-actions .icon-btn{
+  display:inline-grid;
+  place-items:center;
+}
+
+
+/* 0.8.1.5 — approved iPad one-line attachment toolbar */
+@media (min-width:820px){
+  .tablet-chat-pane .composer-wrap{
+    padding-bottom:10px;
+  }
+  .tablet-chat-pane .tool-panel.open{
+    display:grid;
+    grid-template-columns:repeat(8,minmax(0,1fr));
+    gap:6px;
+    width:100%;
+    padding:8px 10px 4px;
+    overflow:hidden;
+  }
+  .tablet-chat-pane .tool{
+    min-width:0;
+    width:100%;
+    min-height:68px;
+    padding:6px 2px;
+    border:0;
+    background:transparent;
+    box-shadow:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+  }
+  .tablet-chat-pane .tool-icon{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+  }
+  .tablet-chat-pane .tool-icon svg{
+    width:27px;
+    height:27px;
+  }
+  .tablet-chat-pane .tool span:last-child{
+    width:100%;
+    font-size:12px;
+    line-height:1.05;
+    white-space:nowrap;
+    overflow:visible;
+    text-overflow:clip;
+    text-align:center;
+  }
+  .tablet-chat-pane .quick-row{
+    padding-left:10px;
+    padding-right:10px;
+  }
+  .tablet-chat-pane .compose-line{
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  .tablet-bottom-nav{
+    margin-top:auto;
+    flex:0 0 auto;
+    min-height:78px;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    padding:8px 4px max(8px,env(safe-area-inset-bottom));
+    background:var(--panel);
+  }
+  .tablet-nav-item{
+    border:0;
+    background:transparent;
+    color:var(--muted);
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    font-size:11px;
+    font-weight:700;
+  }
+  .tablet-nav-item svg{display:block}
+  .tablet-nav-item.active{
+    color:var(--accent);
+  }
+}
+
+/* Keep phone behavior compact: 4 columns x 2 rows. */
+@media (max-width:819px){
+  .tool-panel.open{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+}
+
+
+/* 0.8.1.6 — tablet width/composer/tool-row correction
+   Root cause: the phone composer remained position:fixed and still used the
+   520px phone centering math inside tablet mode. That overlaid/narrowed the
+   two-pane layout and made the one-line tool row look detached. */
+@media (min-width:700px){
+  body{
+    justify-content:stretch;
+  }
+
+  .tablet-shell{
+    width:100vw;
+    max-width:100vw;
+    min-width:0;
+    height:100dvh;
+    grid-template-columns:minmax(260px,34%) minmax(0,1fr);
+  }
+
+  .tablet-sidebar,
+  .tablet-chat-pane{
+    min-width:0;
+  }
+
+  .tablet-chat-pane .composer-wrap{
+    position:static;
+    left:auto;
+    right:auto;
+    bottom:auto;
+    width:100%;
+    max-width:none;
+    box-sizing:border-box;
+    margin:0;
+    padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+    flex:0 0 auto;
+  }
+
+  .tablet-chat-pane .chat{
+    padding-bottom:14px;
+  }
+
+  .tablet-chat-pane .quick-row{
+    width:100%;
+    box-sizing:border-box;
+    overflow-x:auto;
+  }
+
+  .tablet-chat-pane .compose-line{
+    width:100%;
+    box-sizing:border-box;
+  }
+
+  .tablet-chat-pane .tool-panel.open{
+    display:grid;
+    grid-template-columns:repeat(8,minmax(0,1fr));
+    gap:4px;
+    width:100%;
+    max-width:100%;
+    padding:7px 0 2px;
+    overflow:visible;
+    box-sizing:border-box;
+  }
+
+  .tablet-chat-pane .tool{
+    min-width:0;
+    width:100%;
+    min-height:60px;
+    padding:4px 1px;
+    border:0;
+    border-radius:0;
+    background:transparent;
+    box-shadow:none;
+    overflow:visible;
+  }
+
+  .tablet-chat-pane .tool-icon{
+    width:34px;
+    height:34px;
+    border-radius:9px;
+  }
+
+  .tablet-chat-pane .tool-icon svg{
+    width:24px;
+    height:24px;
+  }
+
+  .tablet-chat-pane .tool span:last-child{
+    display:block;
+    width:100%;
+    font-size:10px;
+    line-height:1.05;
+    white-space:nowrap;
+    overflow:visible;
+    text-overflow:clip;
+    text-align:center;
+  }
+
+  .tablet-bottom-nav{
+    width:100%;
+    box-sizing:border-box;
+    overflow:hidden;
+  }
+
+  .tablet-nav-item{
+    min-width:0;
+    overflow:hidden;
+  }
+
+  .tablet-nav-item span{
+    display:block;
+    max-width:100%;
+    font-size:10px;
+    white-space:nowrap;
+  }
+}
+
+/* Phone remains single-pane. */
+@media (max-width:699px){
+  .tablet-shell{
+    display:block;
+    height:auto;
+  }
+  .tablet-sidebar{
+    display:none;
+  }
+}
+
+
+/* 0.8.1.7 — final tablet polish */
+
+/* Keep the one-line attachment toolbar, but visually group it instead of
+   stretching each item loosely across the entire chat pane. */
+@media (min-width:700px){
+  .tablet-chat-pane .composer-wrap{
+    padding-left:18px;
+    padding-right:18px;
+  }
+
+  .tablet-chat-pane .tool-panel.open{
+    width:min(100%, 860px);
+    margin:8px auto 2px;
+    padding:10px 12px 8px;
+    grid-template-columns:repeat(8,minmax(72px,1fr));
+    gap:8px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:color-mix(in srgb, var(--panel) 88%, transparent);
+    box-shadow:var(--shadow);
+  }
+
+  .tablet-chat-pane .tool{
+    min-height:72px;
+    border-radius:12px;
+    padding:6px 3px;
+  }
+
+  .tablet-chat-pane .tool-icon{
+    width:40px;
+    height:40px;
+    border-radius:11px;
+  }
+
+  .tablet-chat-pane .tool-icon svg{
+    width:28px;
+    height:28px;
+  }
+
+  .tablet-chat-pane .tool span:last-child{
+    font-size:11px;
+    font-weight:700;
+  }
+
+  .tablet-chat-pane .quick-row,
+  .tablet-chat-pane .compose-line{
+    width:min(100%, 900px);
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  /* Tablet forms / New Message / New Group / Group Name:
+     use the available tablet workspace instead of a phone-width column
+     pinned to the left. */
+  body[data-route="newConversation"] .app-shell,
+  body[data-route="newGroup"] .app-shell,
+  body[data-route="groupName"] .app-shell{
+    max-width:960px;
+    width:min(100%,960px);
+    min-height:100dvh;
+    margin:0 auto;
+  }
+
+  body[data-route="newConversation"] .content,
+  body[data-route="newGroup"] .content,
+  body[data-route="groupName"] .content{
+    max-width:860px;
+    margin:0 auto;
+    width:100%;
+    box-sizing:border-box;
+  }
+
+  body[data-route="newConversation"] .topbar,
+  body[data-route="newGroup"] .topbar,
+  body[data-route="groupName"] .topbar{
+    max-width:960px;
+    margin:0 auto;
+  }
+}
+
+/* Keep phone presentation unchanged. */
+@media (max-width:699px){
+  body[data-route="newConversation"] .app-shell,
+  body[data-route="newGroup"] .app-shell,
+  body[data-route="groupName"] .app-shell{
+    max-width:var(--app-max);
+    width:100%;
+  }
+}
+
+
+/* 0.8.1.8 — complete tablet treatment for secondary and first screens */
+@media (min-width:700px){
+  /* Settings should no longer look like a narrow phone panel on iPad. */
+  body[data-route="settings"] .app-shell{
+    max-width:960px;
+    width:min(100%,960px);
+    min-height:100dvh;
+    margin:0 auto;
+  }
+
+  body[data-route="settings"] .content{
+    max-width:860px;
+    width:100%;
+    margin:0 auto;
+    box-sizing:border-box;
+  }
+
+  body[data-route="settings"] .topbar{
+    max-width:960px;
+    width:100%;
+    margin:0 auto;
+    box-sizing:border-box;
+  }
+
+  /* First/unlock screen gets the same tablet-aware proportions. */
+  body[data-route="unlock"] .app-shell.unlock{
+    max-width:960px;
+    width:min(100%,960px);
+    min-height:100dvh;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+    box-sizing:border-box;
+  }
+
+  body[data-route="unlock"] .unlock-card{
+    width:min(100%,680px);
+    max-width:680px;
+    margin:auto;
+    box-sizing:border-box;
+  }
+}
+
+@media (max-width:699px){
+  body[data-route="settings"] .app-shell,
+  body[data-route="unlock"] .app-shell.unlock{
+    max-width:var(--app-max);
+    width:100%;
+  }
+}
+
+
+/* 0.8.1.9 — orientation-aware tablet layouts */
+
+/* Portrait tablet: preserve the approved centered single-column treatment. */
+@media (min-width:700px) and (orientation:portrait){
+  body[data-route="unlock"] .app-shell.unlock,
+  body[data-route="settings"] .app-shell,
+  body[data-route="newConversation"] .app-shell,
+  body[data-route="newGroup"] .app-shell,
+  body[data-route="groupName"] .app-shell{
+    width:min(100%,960px);
+    max-width:960px;
+    margin:0 auto;
+  }
+
+  body[data-route="settings"] .content,
+  body[data-route="newConversation"] .content,
+  body[data-route="newGroup"] .content,
+  body[data-route="groupName"] .content{
+    width:100%;
+    max-width:860px;
+    margin:0 auto;
+  }
+
+  body[data-route="unlock"] .unlock-card{
+    width:min(100%,680px);
+    max-width:680px;
+  }
+}
+
+/* Landscape tablet: use the available width rather than leaving a large empty right side. */
+@media (min-width:900px) and (orientation:landscape){
+  body[data-route="unlock"] .app-shell.unlock{
+    width:100vw;
+    max-width:100vw;
+    min-height:100dvh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px 56px;
+    box-sizing:border-box;
+  }
+
+  body[data-route="unlock"] .unlock-card{
+    width:min(100%,920px);
+    max-width:920px;
+    margin:auto;
+    padding-left:44px;
+    padding-right:44px;
+  }
+
+  body[data-route="settings"] .app-shell,
+  body[data-route="newConversation"] .app-shell,
+  body[data-route="newGroup"] .app-shell,
+  body[data-route="groupName"] .app-shell{
+    width:100vw;
+    max-width:100vw;
+    min-height:100dvh;
+    margin:0;
+  }
+
+  body[data-route="settings"] .topbar,
+  body[data-route="newConversation"] .topbar,
+  body[data-route="newGroup"] .topbar,
+  body[data-route="groupName"] .topbar{
+    width:100%;
+    max-width:none;
+    margin:0;
+    box-sizing:border-box;
+  }
+
+  body[data-route="settings"] .content,
+  body[data-route="newConversation"] .content,
+  body[data-route="newGroup"] .content,
+  body[data-route="groupName"] .content{
+    width:min(100%,1180px);
+    max-width:1180px;
+    margin:0 auto;
+    padding-left:28px;
+    padding-right:28px;
+    box-sizing:border-box;
+  }
+
+  /* Settings becomes a balanced two-column card layout in landscape. */
+  body[data-route="settings"] .content{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px;
+    align-items:start;
+  }
+
+  body[data-route="settings"] .content > *{
+    min-width:0;
+  }
+
+  body[data-route="settings"] .content > .section-title{
+    grid-column:1 / -1;
+    margin-top:6px;
+    margin-bottom:-4px;
+  }
+
+  body[data-route="settings"] .content > .version-footer{
+    grid-column:1 / -1;
+  }
+
+  /* New Message / Group screens use a broad centered workspace.
+     Existing cards/choices keep their own structure but no longer appear
+     like a phone column stuck to the left. */
+  body[data-route="newConversation"] .content,
+  body[data-route="newGroup"] .content,
+  body[data-route="groupName"] .content{
+    max-width:1100px;
+  }
+
+  body[data-route="newConversation"] .card,
+  body[data-route="newGroup"] .card,
+  body[data-route="groupName"] .card{
+    max-width:100%;
+  }
+}
+
+/* Smaller landscape tablets still get a wider centered workspace, without forcing
+   the full two-column settings arrangement if space is limited. */
+@media (min-width:700px) and (max-width:899px) and (orientation:landscape){
+  body[data-route="unlock"] .app-shell.unlock,
+  body[data-route="settings"] .app-shell,
+  body[data-route="newConversation"] .app-shell,
+  body[data-route="newGroup"] .app-shell,
+  body[data-route="groupName"] .app-shell{
+    width:100%;
+    max-width:100%;
+  }
+
+  body[data-route="settings"] .content,
+  body[data-route="newConversation"] .content,
+  body[data-route="newGroup"] .content,
+  body[data-route="groupName"] .content{
+    width:min(100%,900px);
+    max-width:900px;
+    margin:0 auto;
+  }
+
+  body[data-route="unlock"] .unlock-card{
+    width:min(100%,760px);
+    max-width:760px;
+  }
+}

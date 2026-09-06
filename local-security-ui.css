@@ -1,1 +1,68 @@
-input.text-input,select.text-input,input.search,textarea{display:block;width:100%;min-height:52px;position:relative;z-index:1;pointer-events:auto;touch-action:manipulation;background:#fff;color:#10232c;border:2px solid #52636d;-webkit-text-fill-color:#10232c;caret-color:#10232c;opacity:1}input.text-input,select.text-input,input.search{border-radius:14px}textarea{border-radius:16px}select.text-input{-webkit-user-select:auto;user-select:auto;appearance:auto;-webkit-appearance:menulist}input.text-input::placeholder,input.search::placeholder,textarea::placeholder{color:#52636d;-webkit-text-fill-color:#52636d;opacity:1}.form-label{display:block;margin-top:14px;color:var(--ink);font-weight:600}input.text-input:focus,select.text-input:focus,input.search:focus,textarea:focus{outline:3px solid currentColor;outline-offset:2px}html[data-theme="dark"] input.text-input,html[data-theme="dark"] select.text-input,html[data-theme="dark"] input.search,html[data-theme="dark"] textarea{background:#071116;color:#fff;-webkit-text-fill-color:#fff;border-color:#aebfc8;caret-color:#fff}html[data-theme="dark"] input.text-input::placeholder,html[data-theme="dark"] input.search::placeholder,html[data-theme="dark"] textarea::placeholder{color:#d0d9de;-webkit-text-fill-color:#d0d9de}
+/* FIDUNIO app-wide form/control accessibility hardening for iOS/iPadOS/Fire.
+ * High visibility is intentional and consistent across the entire app. */
+input.text-input,
+select.text-input,
+input.search,
+textarea{
+  display:block;
+  width:100%;
+  min-height:52px;
+  position:relative;
+  z-index:1;
+  pointer-events:auto;
+  touch-action:manipulation;
+  background:#ffffff;
+  color:#10232c;
+  border:2px solid #52636d;
+  -webkit-text-fill-color:#10232c;
+  caret-color:#10232c;
+  opacity:1;
+}
+input.text-input,
+select.text-input,
+input.search{
+  border-radius:14px;
+}
+textarea{border-radius:16px}
+select.text-input{
+  -webkit-user-select:auto;
+  user-select:auto;
+  appearance:auto;
+  -webkit-appearance:menulist;
+}
+input.text-input::placeholder,
+input.search::placeholder,
+textarea::placeholder{
+  color:#52636d;
+  -webkit-text-fill-color:#52636d;
+  opacity:1;
+}
+.form-label{
+  display:block;
+  margin-top:14px;
+  color:var(--ink);
+  font-weight:600;
+}
+input.text-input:focus,
+select.text-input:focus,
+input.search:focus,
+textarea:focus{
+  outline:3px solid currentColor;
+  outline-offset:2px;
+}
+html[data-theme="dark"] input.text-input,
+html[data-theme="dark"] select.text-input,
+html[data-theme="dark"] input.search,
+html[data-theme="dark"] textarea{
+  background:#071116;
+  color:#ffffff;
+  -webkit-text-fill-color:#ffffff;
+  border-color:#aebfc8;
+  caret-color:#ffffff;
+}
+html[data-theme="dark"] input.text-input::placeholder,
+html[data-theme="dark"] input.search::placeholder,
+html[data-theme="dark"] textarea::placeholder{
+  color:#d0d9de;
+  -webkit-text-fill-color:#d0d9de;
+}
