@@ -1,3 +1,10 @@
+## Repository classification — 2026-10-15
+
+`willyros01/htest` is a **historical, isolated FIDUNIO authenticated-device test host**, not the production site or a current native migration branch. It remains pinned to its documented earlier Hermes rebuild source; its old PASS/FAIL statements are not applicable to the 2026-10-15 `hermes/Android` Amazon ADM migration or `hermes/ios` builds. No active merge, new release, testing deployment or production Firebase change is authorized by this documentation update. Current platform docs are branch-local to `hermes/main`, `main-3`, `ios` and `Android`; `htest` preserves the historical test snapshot.
+
+---
+
+
 # htest
 
 Isolated FIDUNIO authenticated-device test host. This is not the production repository.
